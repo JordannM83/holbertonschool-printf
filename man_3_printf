@@ -1,0 +1,29 @@
+.TH MYTOOL 1 "July 2025" "v1.0" "User Commands"
+.SH NAME
+mytool \- outil en ligne de commande pour gérer les tâches
+.SH SYNOPSIS
+.B mytool
+[\fIoptions\fR] fichier
+.SH DESCRIPTION
+\fBmytool\fR est un programme qui permet de gérer des fichiers de tâches.
+
+Il prend un fichier en argument et permet d'afficher, ajouter ou supprimer des tâches.
+.SH OPTIONS
+.TP
+.B \-h, \-\-help
+Affiche l’aide.
+.TP
+.B \-a, \-\-add \fI"tâche"\fR
+Ajoute une tâche.
+.TP
+.B \-d, \-\-delete \fIN\fR
+Supprime la tâche numéro \fIN\fR.
+.SH EXAMPLES
+.TP
+.B mytool -a "Faire les courses" tasks.txt
+Ajoute une tâche dans le fichier `tasks.txt`.
+.SH AUTHOR
+Joshua Burle - Jordan <jean@example.com>
+.SH SEE ALSO
+.BR bash (1), 
+.BR grep (1)
