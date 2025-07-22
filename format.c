@@ -46,3 +46,51 @@ void print_percent(va_list args)
 	(void)args;
 	_putchar('%');
 }
+
+/**
+ * print_int - Prints an integer
+ * @args: The argument list containing the integer to print
+ * Description: This function retrieves an integer from the argument list
+ * and prints it to standard output using _putchar.
+ * Return: void
+ */
+
+void print_int(va_list args)
+{
+	int n = va_arg(args, int);
+	int divisor = 1;
+	int temp = n;
+
+	if (n < 0)
+	{
+		_putchar('-');
+		n = -n;
+		temp = n;
+	}
+
+	while (temp / 10 != 0)
+	{
+		divisor *= 10;
+		temp /= 10;
+	}
+
+	while (divisor != 0)
+	{
+		_putchar((n / divisor) + '0');
+		n %= divisor;
+		divisor /= 10;
+	}
+}
+
+/**
+ * print_decimal - Prints a decimal integer
+ * @args: The argument list containing the integer to print
+ * Description: This function retrieves an integer from the argument list
+ * and prints it to standard output using _putchar. Same as print_int.
+ * Return: void
+ */
+
+void print_decimal(va_list args)
+{
+	print_int(args);
+}

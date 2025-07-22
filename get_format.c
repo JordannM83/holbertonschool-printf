@@ -17,6 +17,8 @@ void (*get_format_func(char *specifier))(va_list)
 		{"c", print_char},
 		{"s", print_string},
 		{"%", print_percent},
+		{"d", print_decimal},
+		{"i", print_int},
 		{NULL, NULL}};
 
 int i = 0;
