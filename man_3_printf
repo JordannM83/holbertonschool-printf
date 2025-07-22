@@ -1,4 +1,4 @@
-.TH _PRINTF 3 "July 2025" "Holberton School" "Library Functions Manual"
+.TH printf 1 "July 2025" "version 1.0" "MAN-PAGE"
 .SH NAME
 _printf \- formatted output conversion
 .SH SYNOPSIS
@@ -6,140 +6,41 @@ _printf \- formatted output conversion
 .sp
 .BI "int _printf(const char *" format ", ...);"
 .SH DESCRIPTION
-The
-.BR _printf ()
-function produces output according to a
-.I format
-as described below.
-The
-.BR _printf ()
-function writes output to
-.IR stdout ,
-the standard output stream.
-.PP
-This function writes the output under the control of a
-.I format
-string that specifies how subsequent arguments are converted for output.
-.PP
-The
-.I format
-string is a character string, beginning and ending in its initial shift state, if any.
-The format string is composed of zero or more directives: ordinary characters (not
-.BR % ),
-which are copied unchanged to the output stream; and conversion specifications, each of which results in fetching zero or more subsequent arguments.
-Each conversion specification is introduced by the character
-.BR % ,
-and ends with a
-.I "conversion specifier"
-character.
-.SH FORMAT SPECIFIERS
-The conversion specifiers and their meanings are:
+The _printf command is used to format and display text and variables with fine control over layout, similar to the standard printf function in the C language.
+.SH CONVERSION SPECIFIERS
+%c prints a character
 .TP
-.B %c
-The
-.I int
-argument is converted to an
-.IR "unsigned char" ,
-and the resulting character is written.
+%s prints a string 
 .TP
-.B %s
-The
-.I "const char *"
-argument is expected to be a pointer to an array of character type (pointer to a string).
-Characters from the array are written up to (but not including) a terminating null byte ('\\0').
-If the argument is NULL, "(null)" is written.
+%d and %i prints an integer 
 .TP
-.B %d, %i
-The
-.I int
-argument is converted to signed decimal notation.
-.TP
-.B %%
-A literal '%' character is written.
-No argument is converted.
-The complete conversion specification is '%%'.
-.SH RETURN VALUE
-Upon successful return, the
-.BR _printf ()
-function returns the number of characters printed (excluding the null byte used to end output to strings).
-.PP
-If an output error is encountered, a negative value is returned.
+%% prints a percent sign
 .SH EXAMPLES
-To print the string "Hello, World!" followed by a newline:
 .PP
-.in +4n
-.EX
-#include "main.h"
-
-int main(void)
-{
-    _printf("Hello, World!\\n");
-    return (0);
-}
-.EE
-.in
+.B * To print a %c
+.nf
+_printf("I'm the letter: %c\\n", 'A');
+.fi
 .PP
-To print a character and an integer:
+.B * To print a %s
+.nf
+_printf("I'm a %s!\\n", "string");
+.fi
 .PP
-.in +4n
-.EX
-#include "main.h"
-
-int main(void)
-{
-    char c = 'A';
-    int num = 42;
-    
-    _printf("Character: %c, Number: %d\\n", c, num);
-    return (0);
-}
-.EE
-.in
+.B * To print a %
+.nf
+_printf("100%%\\n");
+.fi
 .PP
-To print a string with formatting:
+.B * To print a %d
+.nf
+_printf("Number: %d\\n", 123);
+.fi
 .PP
-.in +4n
-.EX
-#include "main.h"
-
-int main(void)
-{
-    char *name = "Alice";
-    int age = 25;
-    
-    _printf("Name: %s, Age: %i years old\\n", name, age);
-    return (0);
-}
-.EE
-.in
-.SH NOTES
-The
-.BR _printf ()
-function is a custom implementation and may not support all the features of the standard
-.BR printf (3)
-function.
+.B * To print a %i
+.nf
+_printf("Number: %i\\n", 789012);
+.fi
 .PP
-Currently supported format specifiers are limited to:
-.BR %c ,
-.BR %s ,
-.BR %d ,
-.BR %i ,
-and
-.BR %% .
-.PP
-The function does not support field width, precision, length modifiers, or other advanced formatting options.
-.SH BUGS
-If the format string ends with a single '%' character, the function stops processing and returns the count of characters printed up to that point.
-.PP
-Unrecognized format specifiers are printed literally (as '%' followed by the character).
 .SH AUTHORS
-This implementation was created as part of the Holberton School curriculum.
-.SH SEE ALSO
-.BR printf (3),
-.BR sprintf (3),
-.BR fprintf (3),
-.BR putchar (3)
-.PP
-For more information about format strings, see the
-.BR printf (3)
-manual page.
+Written by Jordann Miso and Joshua Burle

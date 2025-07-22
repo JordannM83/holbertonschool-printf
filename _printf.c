@@ -19,13 +19,14 @@ int _printf(const char *format, ...)
 	void (*func)(va_list);
 
 	va_start(args, format);
-
+	if (format == NULL)
+		return (-1);
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
 			if (format[i + 1] == '\0')
-				break;
+				return (-1);
 			specifier[0] = format[i + 1];
 			specifier[1] = '\0';
 			func = get_format_func(specifier);
