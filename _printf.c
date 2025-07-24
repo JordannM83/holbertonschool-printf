@@ -16,7 +16,7 @@ int _printf(const char *format, ...)
 	int len = 0;
 	int i = 0;
 	char specifier[2];
-	void (*func)(va_list);
+	int (*func)(va_list);
 
 	va_start(args, format);
 	if (format == NULL)
@@ -32,8 +32,7 @@ int _printf(const char *format, ...)
 			func = get_format_func(specifier);
 			if (func != NULL)
 			{
-				func(args);
-				len++;
+				len += func(args);
 			}
 			else
 			{

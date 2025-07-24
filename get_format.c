@@ -11,7 +11,7 @@
  * or NULL if not found.
  */
 
-void (*get_format_func(char *specifier))(va_list)
+int (*get_format_func(char *specifier))(va_list)
 {
 	print_t format[] = {
 		{"c", print_char},
