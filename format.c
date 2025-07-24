@@ -77,17 +77,12 @@ int print_int(va_list args)
 		num = -number;
 	}
 	else
-<<<<<<< HEAD
-		num = n;
+		num = number;
 
 	if (num == 0)
 	{
 		_putchar('0');
 		return (count + 1);
-=======
-	{
-		num = number;
->>>>>>> f6e02a5481c99597565bb89cbcd23ef66f7d3437
 	}
 
 	while (num > 0)
