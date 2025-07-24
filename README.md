@@ -49,6 +49,8 @@ int main(void)
 {
     _printf("Hello, %s!\n", "World");
     _printf("Character: %c\n", 'A');
+    _printf("Number: %d\n", 42);
+    _printf("Integer: %i\n", -123);
     _printf("Percent sign: %%\n");
     return (0);
 }
@@ -60,6 +62,8 @@ int main(void)
 |---------------|-------------|---------|
 | `%c` | Caractère unique | `_printf("%c", 'A')` → `A` |
 | `%s` | Chaîne de caractères | `_printf("%s", "Hello")` → `Hello` |
+| `%d` | Entier décimal signé | `_printf("%d", 42)` → `42` |
+| `%i` | Entier décimal signé | `_printf("%i", -123)` → `-123` |
 | `%%` | Caractère de pourcentage littéral | `_printf("%%")` → `%` |
 
 ## 📁 Structure du projet
@@ -71,7 +75,6 @@ holbertonschool-printf/
 ├── get_format.c        # Gestionnaire des spécificateurs de format
 ├── format.c            # Fonctions d'impression pour chaque format
 ├── _putchar.c          # Fonction pour imprimer un caractère
-├── main.c              # Fichier de test principal
 ├── man_3_printf        # Page de manuel
 └── README.md           # Ce fichier
 ```
@@ -98,6 +101,8 @@ Implémente les fonctions d'impression :
 - `print_char()` - Imprime un caractère
 - `print_string()` - Imprime une chaîne
 - `print_percent()` - Imprime le caractère %
+- `print_int()` - Imprime un entier (spécificateur %i)
+- `print_decimal()` - Imprime un entier décimal (spécificateur %d)
 
 ## 🔧 Compilation
 
@@ -159,16 +164,37 @@ int main(void)
 }
 ```
 
-### Exemple 2 : Caractères
+### Exemple 2 : Caractères et nombres
 ```c
 #include "main.h"
 
 int main(void)
 {
     char grade = 'A';
+    int score = 95;
     
     _printf("Your grade is: %c\n", grade);
+    _printf("Your score: %d points\n", score);
+    _printf("Age: %i years old\n", 25);
     _printf("Percentage symbol: %%\n");
+    
+    return (0);
+}
+```
+
+### Exemple 3 : Nombres négatifs et zéro
+```c
+#include "main.h"
+
+int main(void)
+{
+    int positive = 42;
+    int negative = -17;
+    int zero = 0;
+    
+    _printf("Positive: %d\n", positive);
+    _printf("Negative: %i\n", negative);
+    _printf("Zero: %d\n", zero);
     
     return (0);
 }
@@ -180,7 +206,7 @@ int main(void)
 
 1. **Initialisation** : Setup des variables et de `va_list`
 2. **Parsing** : Parcours caractère par caractère de la chaîne de format
-3. **Détection** : Identification des spécificateurs (`%c`, `%s`, `%%`)
+3. **Détection** : Identification des spécificateurs (`%c`, `%s`, `%d`, `%i`, `%%`)
 4. **Exécution** : Appel de la fonction appropriée pour chaque spécificateur
 5. **Comptage** : Suivi du nombre de caractères imprimés
 6. **Retour** : Retourne le nombre total de caractères
@@ -200,8 +226,16 @@ Ce projet est développé à des fins éducatives dans le cadre de Holberton Sch
 
 ## 👥 Auteurs
 
-- **JordannM83** - *Développeur principal* - [GitHub](https://github.com/JordannM83)
+- **JordannM83 - Joshuaburle** - *Développeur principal* - [GitHub](https://github.com/JordannM83)
+
+## Man Page Printf
+
+![Man Page Printf](images/man_page.png)
+
+## Flowchart Printf
+
+![Flowchart Printf](images/flowchart_printf.png)
 
 ---
 
-*Projet développé avec ❤️ à Holberton School*
+*Projet développé pour Holberton School*

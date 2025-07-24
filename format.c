@@ -1,17 +1,19 @@
 #include "main.h"
 #include <stdarg.h>
+#include <stddef.h>
 
 /**
  * print_char - Prints a character
  * @args: The argument list containing the character to print
  * * Description: This function retrieves a character from the argument list
  * and prints it to standard output using _putchar.
- * * Return: void
+ * * Return: Number of characters printed (always 1)
  */
 
-void print_char(va_list args)
+int print_char(va_list args)
 {
 	_putchar(va_arg(args, int));
+	return (1);
 }
 
 /**
@@ -19,32 +21,37 @@ void print_char(va_list args)
  * @args: The argument list containing the string to print
  * Description: This function retrieves a string from the argument list
  * and prints it character by character using _putchar.
- * Return: void
+ * Return: Number of characters printed
  */
 
-void print_string(va_list args)
+int print_string(va_list args)
 {
 	int i = 0;
 	char *str = va_arg(args, char *);
 
-	while (str && str[i])
+	if (str == NULL)
+		str = "(null)";
+
+	while (str[i])
 	{
 		_putchar(str[i]);
 		i++;
 	}
+	return (i);
 }
 
 /**
  * print_percent - Prints a percent sign
  * @args: The argument list (not used in this function)
  * Description: This function prints a percent sign to standard output.
- * Return: void
+ * Return: Number of characters printed (always 1)
  */
 
-void print_percent(va_list args)
+int print_percent(va_list args)
 {
 	(void)args;
 	_putchar('%');
+	return (1);
 }
 
 /**
@@ -52,22 +59,29 @@ void print_percent(va_list args)
  * @args: The argument list containing the integer to print
  * Description: This function retrieves an integer from the argument list
  * and prints it to standard output using _putchar.
- * Return: void
+ * Return: Number of characters printed
  */
 
-void print_int(va_list args)
+int print_int(va_list args)
 {
 	int number = va_arg(args, int);
+	unsigned int num;
 	int divisor = 1;
-	int temp = number;
+	unsigned int temp;
+	int count = 0;
 
 	if (number < 0)
 	{
 		_putchar('-');
-		number = -number;
-		temp = number;
+		count++;
+		num = -number;
+	}
+	else
+	{
+		num = number;
 	}
 
+	temp = num;
 	while (temp / 10 != 0)
 	{
 		divisor *= 10;
@@ -76,10 +90,12 @@ void print_int(va_list args)
 
 	while (divisor != 0)
 	{
-		_putchar((number / divisor) + '0');
-		number %= divisor;
+		_putchar((num / divisor) + '0');
+		count++;
+		num %= divisor;
 		divisor /= 10;
 	}
+	return (count);
 }
 
 /**
@@ -87,10 +103,10 @@ void print_int(va_list args)
  * @args: The argument list containing the integer to print
  * Description: This function retrieves an integer from the argument list
  * and prints it to standard output using _putchar. Same as print_int.
- * Return: void
+ * Return: Number of characters printed
  */
 
-void print_decimal(va_list args)
+int print_decimal(va_list args)
 {
-	print_int(args);
+	return (print_int(args));
 }

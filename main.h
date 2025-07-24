@@ -14,24 +14,24 @@
 typedef struct print
 {
 	char *specifiers;
-	void (*function)(va_list);
+	int (*function)(va_list);
 } print_t;
 
 int _putchar(char c);
 
 int _printf(const char *format, ...);
 
-void (*get_format_func(char *specifier))(va_list);
+int (*get_format_func(char *specifier))(va_list);
 
-void print_char(va_list args);
+int print_char(va_list args);
 
-void print_string(va_list args);
+int print_string(va_list args);
 
-void print_percent(va_list args);
+int print_percent(va_list args);
 
-void print_int(va_list args);
+int print_int(va_list args);
 
-void print_decimal(va_list args);
+int print_decimal(va_list args);
 
 
 
