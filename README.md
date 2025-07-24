@@ -226,8 +226,16 @@ Ce projet est développé à des fins éducatives dans le cadre de Holberton Sch
 
 ## 👥 Auteurs
 
-- **JordannM83** - *Développeur principal* - [GitHub](https://github.com/JordannM83)
+- **JordannM83 - Joshuaburle** - *Développeur principal* - [GitHub](https://github.com/JordannM83)
+
+## Man Page Printf
+
+![Man Page Printf](images/man_page.png)
+
+## Flowchart Printf
+
+![Flowchart Printf](images/flowchart_printf.png)
 
 ---
 
-*Projet développé avec ❤️ à Holberton School*
+*Projet développé pour Holberton School*
