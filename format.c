@@ -61,7 +61,7 @@ void print_int(va_list args)
 	int divisor = 1;
 	int temp = number;
 
-	if (n < 0)
+	if (number < 0)
 	{
 		_putchar('-');
 		number = -number;
@@ -76,7 +76,7 @@ void print_int(va_list args)
 
 	while (divisor != 0)
 	{
-		_putchar((n / divisor) + '0');
+		_putchar((number / divisor) + '0');
 		number %= divisor;
 		divisor /= 10;
 	}
