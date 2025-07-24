@@ -1,29 +1,46 @@
-.TH MYTOOL 1 "July 2025" "v1.0" "User Commands"
+.TH printf 1 "July 2025" "version 1.0" "MAN-PAGE"
 .SH NAME
-mytool \- outil en ligne de commande pour gérer les tâches
+_printf \- formatted output conversion
 .SH SYNOPSIS
-.B mytool
-[\fIoptions\fR] fichier
+.B #include "main.h"
+.sp
+.BI "int _printf(const char *" format ", ...);"
 .SH DESCRIPTION
-\fBmytool\fR est un programme qui permet de gérer des fichiers de tâches.
-
-Il prend un fichier en argument et permet d'afficher, ajouter ou supprimer des tâches.
-.SH OPTIONS
+The _printf command is used to format and display text and variables with fine control over layout, similar to the standard printf function in the C language.
+.SH CONVERSION SPECIFIERS
+%c prints a character
 .TP
-.B \-h, \-\-help
-Affiche l’aide.
+%s prints a string 
 .TP
-.B \-a, \-\-add \fI"tâche"\fR
-Ajoute une tâche.
+%d and %i prints an integer 
 .TP
-.B \-d, \-\-delete \fIN\fR
-Supprime la tâche numéro \fIN\fR.
+%% prints a percent sign
 .SH EXAMPLES
-.TP
-.B mytool -a "Faire les courses" tasks.txt
-Ajoute une tâche dans le fichier `tasks.txt`.
-.SH AUTHOR
-Joshua Burle - Jordan <jean@example.com>
-.SH SEE ALSO
-.BR bash (1), 
-.BR grep (1)
+.PP
+.B * To print a %c
+.nf
+_printf("I'm the letter: %c\\n", 'A');
+.fi
+.PP
+.B * To print a %s
+.nf
+_printf("I'm a %s!\\n", "string");
+.fi
+.PP
+.B * To print a %
+.nf
+_printf("100%%\\n");
+.fi
+.PP
+.B * To print a %d
+.nf
+_printf("Number: %d\\n", 123);
+.fi
+.PP
+.B * To print a %i
+.nf
+_printf("Number: %i\\n", 789012);
+.fi
+.PP
+.SH AUTHORS
+Written by Jordann Miso and Joshua Burle
