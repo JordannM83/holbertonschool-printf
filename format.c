@@ -66,9 +66,9 @@ int print_int(va_list args)
 {
 	int n = va_arg(args, int);
 	unsigned int num;
-	int divisor = 1;
-	unsigned int temp;
 	int count = 0;
+	char buffer[12];
+	int i = 0;
 
 	if (n < 0)
 	{
@@ -77,24 +77,26 @@ int print_int(va_list args)
 		num = -n;
 	}
 	else
-	{
 		num = n;
+
+	if (num == 0)
+	{
+		_putchar('0');
+		return (count + 1);
 	}
 
-	temp = num;
-	while (temp / 10 != 0)
+	while (num > 0)
 	{
-		divisor *= 10;
-		temp /= 10;
+		buffer[i++] = (num % 10) + '0';
+		num /= 10;
 	}
 
-	while (divisor != 0)
+	while (--i >= 0)
 	{
-		_putchar((num / divisor) + '0');
+		_putchar(buffer[i]);
 		count++;
-		num %= divisor;
-		divisor /= 10;
 	}
+
 	return (count);
 }
 

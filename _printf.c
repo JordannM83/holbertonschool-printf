@@ -15,25 +15,20 @@ int _printf(const char *format, ...)
 	va_list args;
 	int len = 0;
 	int i = 0;
-	char specifier[2];
 	int (*func)(va_list);
 
-	va_start(args, format);
-	if (format == NULL)
+	if (!format)
 		return (-1);
-	while (format[i] != '\0')
+	va_start(args, format);
+	while (format[i])
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == '\0')
+			if (!format[i + 1])
 				return (-1);
-			specifier[0] = format[i + 1];
-			specifier[1] = '\0';
-			func = get_format_func(specifier);
-			if (func != NULL)
-			{
+			func = get_format_func(format[i + 1]);
+			if (func)
 				len += func(args);
-			}
 			else
 			{
 				_putchar('%');

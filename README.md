@@ -25,6 +25,7 @@ Ce projet implémente une version simplifiée de la fonction `printf` de la bibl
 - ✅ Support des arguments variables
 - ✅ Retourne le nombre de caractères imprimés
 - ✅ Gestion des erreurs pour les spécificateurs non reconnus
+- ✅ Code optimisé et simplifié pour de meilleures performances
 - ✅ Code conforme aux standards de codage Holberton
 
 ## 🚀 Installation
@@ -82,26 +83,27 @@ holbertonschool-printf/
 ### Description des fichiers
 
 #### `main.h`
-Contient toutes les déclarations de fonctions et la structure `print_t` utilisée pour mapper les spécificateurs aux fonctions.
+Contient toutes les déclarations de fonctions et la structure `print_t` optimisée qui utilise des caractères simples au lieu de chaînes pour mapper les spécificateurs aux fonctions.
 
 #### `_printf.c`
-Implémente la fonction principale qui :
-- Parse la chaîne de format
-- Identifie les spécificateurs de format
-- Appelle les fonctions appropriées
-- Compte les caractères imprimés
+Implémente la fonction principale simplifiée qui :
+- Parse la chaîne de format caractère par caractère
+- Identifie les spécificateurs de format directement
+- Appelle les fonctions appropriées sans allocation temporaire
+- Compte précisément les caractères imprimés
 
 #### `get_format.c`
-Contient la fonction `get_format_func` qui :
-- Recherche le spécificateur dans le tableau de formats
+Contient la fonction `get_format_func` optimisée qui :
+- Compare directement les caractères de spécificateurs (plus rapide)
+- Utilise une structure simplifiée sans dépendances externes
 - Retourne un pointeur vers la fonction appropriée
 
 #### `format.c`
-Implémente les fonctions d'impression :
-- `print_char()` - Imprime un caractère
-- `print_string()` - Imprime une chaîne
-- `print_percent()` - Imprime le caractère %
-- `print_int()` - Imprime un entier (spécificateur %i)
+Implémente les fonctions d'impression optimisées :
+- `print_char()` - Imprime un caractère et retourne 1
+- `print_string()` - Imprime une chaîne et gère les valeurs NULL
+- `print_percent()` - Imprime le caractère % et retourne 1
+- `print_int()` - Imprime un entier avec algorithme optimisé (spécificateur %i)
 - `print_decimal()` - Imprime un entier décimal (spécificateur %d)
 
 ## 🔧 Compilation
@@ -202,19 +204,53 @@ int main(void)
 
 ## 🛠️ Fonctionnement interne
 
-### Algorithme principal :
+### Algorithme principal (optimisé) :
 
 1. **Initialisation** : Setup des variables et de `va_list`
-2. **Parsing** : Parcours caractère par caractère de la chaîne de format
-3. **Détection** : Identification des spécificateurs (`%c`, `%s`, `%d`, `%i`, `%%`)
-4. **Exécution** : Appel de la fonction appropriée pour chaque spécificateur
-5. **Comptage** : Suivi du nombre de caractères imprimés
-6. **Retour** : Retourne le nombre total de caractères
+2. **Validation** : Vérification que `format` n'est pas NULL
+3. **Parsing** : Parcours direct caractère par caractère de la chaîne de format
+4. **Détection** : Identification des spécificateurs (`%c`, `%s`, `%d`, `%i`, `%%`) sans allocation temporaire
+5. **Exécution** : Appel direct de la fonction appropriée pour chaque spécificateur
+6. **Comptage** : Accumulation précise du nombre de caractères imprimés
+7. **Retour** : Retourne le nombre total de caractères
+
+### Optimisations implémentées :
+- **Comparaison directe** de caractères au lieu de chaînes (élimination de `strcmp`)
+- **Algorithme d'impression d'entiers** avec buffer temporaire (moins de divisions)
+- **Élimination des allocations** temporaires (tableau `specifier`)
+- **Gestion robuste** des cas limites (`INT_MIN`, chaînes NULL)
 
 ### Gestion des erreurs :
+- Format NULL : Retourne -1
+- Format se terminant par `%` : Retourne -1
 - Spécificateurs non reconnus : Imprime littéralement `%` + caractère
-- Format se terminant par `%` : Arrête le traitement
-- Chaîne NULL : Gérée dans `print_string()`
+- Chaîne NULL : Affiche `"(null)"` comme le vrai `printf`
+
+## 🚀 Performance et Architecture
+
+### Optimisations implémentées :
+
+#### **Structure de données simplifiée**
+```c
+typedef struct print
+{
+    char specifier;        // Caractère simple au lieu de chaîne
+    int (*function)(va_list);  // Fonction retournant le nb de caractères
+} print_t;
+```
+
+#### **Algorithme d'impression d'entiers optimisé**
+- Utilisation d'un buffer temporaire au lieu de divisions répétées
+- Gestion robuste de `INT_MIN` avec `unsigned int`
+- Une seule passe pour compter et imprimer
+
+#### **Comparaisons directes**
+- Élimination de `strcmp()` pour des comparaisons de caractères
+- Réduction des dépendances (pas de `<string.h>`)
+
+### Complexité :
+- **Temps** : O(n) où n est la longueur de la chaîne de format
+- **Espace** : O(1) pour les variables, O(k) pour le buffer d'entiers (k ≤ 12)
 
 ## 🤝 Contribution
 
@@ -226,7 +262,7 @@ Ce projet est développé à des fins éducatives dans le cadre de Holberton Sch
 
 ## 👥 Auteurs
 
-- **JordannM83 - Joshuaburle** - *Développeur principal* - [GitHub](https://github.com/JordannM83)
+- **JordannM83 - Joshuaburle** - *Développeur principaux* - [GitHub](https://github.com/JordannM83)
 
 ## Man Page Printf
 
