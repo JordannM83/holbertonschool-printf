@@ -64,25 +64,30 @@ int print_percent(va_list args)
 
 int print_int(va_list args)
 {
-	int n = va_arg(args, int);
+	int number = va_arg(args, int);
 	unsigned int num;
 	int count = 0;
 	char buffer[12];
 	int i = 0;
 
-	if (n < 0)
+	if (number < 0)
 	{
 		_putchar('-');
 		count++;
-		num = -n;
+		num = -number;
 	}
 	else
+<<<<<<< HEAD
 		num = n;
 
 	if (num == 0)
 	{
 		_putchar('0');
 		return (count + 1);
+=======
+	{
+		num = number;
+>>>>>>> f6e02a5481c99597565bb89cbcd23ef66f7d3437
 	}
 
 	while (num > 0)
