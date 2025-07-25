@@ -1,47 +1,47 @@
 # 📝 holbertonschool-printf
 
-Une implémentation personnalisée de la fonction `printf` en langage C, développée dans le cadre du cursus Holberton School.
+A custom implementation of the `printf` function in C language, developed as part of the Holberton School curriculum.
 
-## 📋 Table des matières
+## 📋 Table of Contents
 
 - [Description](#description)
-- [Fonctionnalités](#fonctionnalités)
+- [Features](#features)
 - [Installation](#installation)
-- [Utilisation](#utilisation)
-- [Spécificateurs de format supportés](#spécificateurs-de-format-supportés)
-- [Structure du projet](#structure-du-projet)
-- [Exemples](#exemples)
+- [Usage](#usage)
+- [Supported Format Specifiers](#supported-format-specifiers)
+- [Project Structure](#project-structure)
+- [Examples](#examples)
 - [Compilation](#compilation)
 - [Tests](#tests)
-- [Auteurs](#auteurs)
+- [Authors](#authors)
 
 ## 🎯 Description
 
-Ce projet implémente une version simplifiée de la fonction `printf` de la bibliothèque standard C. La fonction `_printf` produit une sortie selon un format spécifié et écrit sur la sortie standard.
+This project implements a simplified version of the `printf` function from the C standard library. The `_printf` function produces output according to a specified format and writes to standard output.
 
-## ✨ Fonctionnalités
+## ✨ Features
 
-- ✅ Gestion des spécificateurs de format de base
-- ✅ Support des arguments variables
-- ✅ Retourne le nombre de caractères imprimés
-- ✅ Gestion des erreurs pour les spécificateurs non reconnus
-- ✅ Code optimisé et simplifié pour de meilleures performances
-- ✅ Code conforme aux standards de codage Holberton
+- ✅ Support for basic format specifiers
+- ✅ Variable arguments support
+- ✅ Returns the number of characters printed
+- ✅ Error handling for unrecognized specifiers
+- ✅ Optimized and simplified code for better performance
+- ✅ Code compliant with Holberton coding standards
 
 ## 🚀 Installation
 
 ```bash
-# Cloner le repository
+# Clone the repository
 git clone https://github.com/JordannM83/holbertonschool-printf.git
 
-# Naviguer dans le dossier
+# Navigate to the directory
 cd holbertonschool-printf
 
-# Compiler le projet
+# Compile the project
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o printf_test
 ```
 
-## 💻 Utilisation
+## 💻 Usage
 
 ```c
 #include "main.h"
@@ -57,83 +57,83 @@ int main(void)
 }
 ```
 
-## 📝 Spécificateurs de format supportés
+## 📝 Supported Format Specifiers
 
-| Spécificateur | Description | Exemple |
-|---------------|-------------|---------|
-| `%c` | Caractère unique | `_printf("%c", 'A')` → `A` |
-| `%s` | Chaîne de caractères | `_printf("%s", "Hello")` → `Hello` |
-| `%d` | Entier décimal signé | `_printf("%d", 42)` → `42` |
-| `%i` | Entier décimal signé | `_printf("%i", -123)` → `-123` |
-| `%%` | Caractère de pourcentage littéral | `_printf("%%")` → `%` |
+| Specifier | Description | Example |
+|-----------|-------------|---------|
+| `%c` | Single character | `_printf("%c", 'A')` → `A` |
+| `%s` | String of characters | `_printf("%s", "Hello")` → `Hello` |
+| `%d` | Signed decimal integer | `_printf("%d", 42)` → `42` |
+| `%i` | Signed decimal integer | `_printf("%i", -123)` → `-123` |
+| `%%` | Literal percent character | `_printf("%%")` → `%` |
 
-## 📁 Structure du projet
+## 📁 Project Structure
 
 ```
 holbertonschool-printf/
-├── main.h              # Fichier d'en-tête principal
-├── _printf.c           # Fonction principale _printf
-├── get_format.c        # Gestionnaire des spécificateurs de format
-├── format.c            # Fonctions d'impression pour chaque format
-├── _putchar.c          # Fonction pour imprimer un caractère
-├── man_3_printf        # Page de manuel
-└── README.md           # Ce fichier
+├── main.h              # Main header file
+├── _printf.c           # Main _printf function
+├── get_format.c        # Format specifier handler
+├── format.c            # Print functions for each format
+├── _putchar.c          # Function to print a character
+├── man_3_printf        # Manual page
+└── README.md           # This file
 ```
 
-### Description des fichiers
+### File Descriptions
 
 #### `main.h`
-Contient toutes les déclarations de fonctions et la structure `print_t` optimisée qui utilise des caractères simples au lieu de chaînes pour mapper les spécificateurs aux fonctions.
+Contains all function declarations and the optimized `print_t` structure that uses simple characters instead of strings to map specifiers to functions.
 
 #### `_printf.c`
-Implémente la fonction principale simplifiée qui :
-- Parse la chaîne de format caractère par caractère
-- Identifie les spécificateurs de format directement
-- Appelle les fonctions appropriées sans allocation temporaire
-- Compte précisément les caractères imprimés
+Implements the simplified main function that:
+- Parses the format string character by character
+- Identifies format specifiers directly
+- Calls appropriate functions without temporary allocation
+- Accurately counts printed characters
 
 #### `get_format.c`
-Contient la fonction `get_format_func` optimisée qui :
-- Compare directement les caractères de spécificateurs (plus rapide)
-- Utilise une structure simplifiée sans dépendances externes
-- Retourne un pointeur vers la fonction appropriée
+Contains the optimized `get_format_func` function that:
+- Directly compares specifier characters (faster)
+- Uses a simplified structure without external dependencies
+- Returns a pointer to the appropriate function
 
 #### `format.c`
-Implémente les fonctions d'impression optimisées :
-- `print_char()` - Imprime un caractère et retourne 1
-- `print_string()` - Imprime une chaîne et gère les valeurs NULL
-- `print_percent()` - Imprime le caractère % et retourne 1
-- `print_int()` - Imprime un entier avec algorithme optimisé (spécificateur %i)
-- `print_decimal()` - Imprime un entier décimal (spécificateur %d)
+Implements the optimized print functions:
+- `print_char()` - Prints a character and returns 1
+- `print_string()` - Prints a string and handles NULL values
+- `print_percent()` - Prints the % character and returns 1
+- `print_int()` - Prints an integer with optimized algorithm (%i specifier)
+- `print_decimal()` - Prints a decimal integer (%d specifier)
 
 ## 🔧 Compilation
 
-Le projet utilise les flags de compilation suivants pour garantir la qualité du code :
+The project uses the following compilation flags to ensure code quality:
 
 ```bash
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o test_printf
 ```
 
-### Flags utilisés :
-- `-Wall` : Active tous les avertissements principaux
-- `-Werror` : Traite les avertissements comme des erreurs
-- `-Wextra` : Active des avertissements supplémentaires
-- `-pedantic` : Respecte strictement le standard C
-- `-std=gnu89` : Utilise le standard GNU C89
+### Flags used:
+- `-Wall` : Enables all major warnings
+- `-Werror` : Treats warnings as errors
+- `-Wextra` : Enables additional warnings
+- `-pedantic` : Strictly follows the C standard
+- `-std=gnu89` : Uses the GNU C89 standard
 
 ## ✅ Tests
 
-Pour exécuter les tests :
+To run the tests:
 
 ```bash
-# Compiler
+# Compile
 make
 
-# Exécuter les tests
+# Run tests
 ./test_printf
 ```
 
-### Sortie attendue :
+### Expected output:
 ```
 Let's try to printf a simple sentence.
 Let's try to printf a simple sentence.
@@ -149,9 +149,9 @@ Len:[12]
 Len:[12]
 ```
 
-## 🔍 Exemples d'utilisation
+## 🔍 Usage Examples
 
-### Exemple 1 : Chaînes de caractères
+### Example 1: Character strings
 ```c
 #include "main.h"
 
@@ -166,7 +166,7 @@ int main(void)
 }
 ```
 
-### Exemple 2 : Caractères et nombres
+### Example 2: Characters and numbers
 ```c
 #include "main.h"
 
@@ -184,7 +184,7 @@ int main(void)
 }
 ```
 
-### Exemple 3 : Nombres négatifs et zéro
+### Example 3: Negative numbers and zero
 ```c
 #include "main.h"
 
@@ -202,67 +202,67 @@ int main(void)
 }
 ```
 
-## 🛠️ Fonctionnement interne
+## 🛠️ Internal Workings
 
-### Algorithme principal (optimisé) :
+### Main Algorithm (optimized):
 
-1. **Initialisation** : Setup des variables et de `va_list`
-2. **Validation** : Vérification que `format` n'est pas NULL
-3. **Parsing** : Parcours direct caractère par caractère de la chaîne de format
-4. **Détection** : Identification des spécificateurs (`%c`, `%s`, `%d`, `%i`, `%%`) sans allocation temporaire
-5. **Exécution** : Appel direct de la fonction appropriée pour chaque spécificateur
-6. **Comptage** : Accumulation précise du nombre de caractères imprimés
-7. **Retour** : Retourne le nombre total de caractères
+1. **Initialization**: Setup variables and `va_list`
+2. **Validation**: Check that `format` is not NULL
+3. **Parsing**: Direct character-by-character traversal of format string
+4. **Detection**: Identification of specifiers (`%c`, `%s`, `%d`, `%i`, `%%`) without temporary allocation
+5. **Execution**: Direct call to appropriate function for each specifier
+6. **Counting**: Precise accumulation of printed character count
+7. **Return**: Returns total character count
 
-### Optimisations implémentées :
-- **Comparaison directe** de caractères au lieu de chaînes (élimination de `strcmp`)
-- **Algorithme d'impression d'entiers** avec buffer temporaire (moins de divisions)
-- **Élimination des allocations** temporaires (tableau `specifier`)
-- **Gestion robuste** des cas limites (`INT_MIN`, chaînes NULL)
+### Implemented optimizations:
+- **Direct comparison** of characters instead of strings (eliminates `strcmp`)
+- **Integer printing algorithm** with temporary buffer (fewer divisions)
+- **Elimination of temporary allocations** (`specifier` array)
+- **Robust handling** of edge cases (`INT_MIN`, NULL strings)
 
-### Gestion des erreurs :
-- Format NULL : Retourne -1
-- Format se terminant par `%` : Retourne -1
-- Spécificateurs non reconnus : Imprime littéralement `%` + caractère
-- Chaîne NULL : Affiche `"(null)"` comme le vrai `printf`
+### Error handling:
+- NULL format: Returns -1
+- Format ending with `%`: Returns -1
+- Unrecognized specifiers: Prints literally `%` + character
+- NULL string: Displays `"(null)"` like real `printf`
 
-## 🚀 Performance et Architecture
+## 🚀 Performance and Architecture
 
-### Optimisations implémentées :
+### Implemented optimizations:
 
-#### **Structure de données simplifiée**
+#### **Simplified data structure**
 ```c
 typedef struct print
 {
-    char specifier;        // Caractère simple au lieu de chaîne
-    int (*function)(va_list);  // Fonction retournant le nb de caractères
+    char specifier;        // Simple character instead of string
+    int (*function)(va_list);  // Function returning number of characters
 } print_t;
 ```
 
-#### **Algorithme d'impression d'entiers optimisé**
-- Utilisation d'un buffer temporaire au lieu de divisions répétées
-- Gestion robuste de `INT_MIN` avec `unsigned int`
-- Une seule passe pour compter et imprimer
+#### **Optimized integer printing algorithm**
+- Uses temporary buffer instead of repeated divisions
+- Robust handling of `INT_MIN` with `unsigned int`
+- Single pass to count and print
 
-#### **Comparaisons directes**
-- Élimination de `strcmp()` pour des comparaisons de caractères
-- Réduction des dépendances (pas de `<string.h>`)
+#### **Direct comparisons**
+- Eliminates `strcmp()` for character comparisons
+- Reduces dependencies (no `<string.h>`)
 
-### Complexité :
-- **Temps** : O(n) où n est la longueur de la chaîne de format
-- **Espace** : O(1) pour les variables, O(k) pour le buffer d'entiers (k ≤ 12)
+### Complexity:
+- **Time**: O(n) where n is the length of the format string
+- **Space**: O(1) for variables, O(k) for integer buffer (k ≤ 12)
 
 ## 🤝 Contribution
 
-Ce projet fait partie du cursus Holberton School. Les contributions sont limitées aux étudiants du projet.
+This project is part of the Holberton School curriculum. Contributions are limited to project students.
 
-## 📄 Licence
+## 📄 License
 
-Ce projet est développé à des fins éducatives dans le cadre de Holberton School.
+This project is developed for educational purposes as part of Holberton School.
 
-## 👥 Auteurs
+## 👥 Authors
 
-- **JordannM83 - Joshuaburle** - *Développeur principaux* - [GitHub](https://github.com/JordannM83)
+- **JordannM83 - Joshuaburle** - *Main developers* - [GitHub](https://github.com/JordannM83)
 
 ## Man Page Printf
 
@@ -274,4 +274,4 @@ Ce projet est développé à des fins éducatives dans le cadre de Holberton Sch
 
 ---
 
-*Projet développé pour Holberton School*
+*Project developed for Holberton School*
